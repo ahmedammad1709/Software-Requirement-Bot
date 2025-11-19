@@ -1,5 +1,4 @@
 import { Link, useLocation } from "react-router-dom";
-import { Bot } from "lucide-react";
 
 const Navbar = () => {
   const location = useLocation();
@@ -12,11 +11,13 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 group">
-            <div className="bg-gradient-primary p-2 rounded-lg shadow-glow group-hover:scale-110 transition-transform duration-300">
-              <Bot className="w-6 h-6 text-white" />
-            </div>
+            <img
+              src="/logo.png"
+              alt="Software Requirement Bot logo"
+              className="h-8 w-auto rounded-lg shadow-glow group-hover:scale-110 transition-transform duration-300"
+            />
             <span className="text-xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-              ReqBot
+              Software Requirement Bot
             </span>
           </Link>
 

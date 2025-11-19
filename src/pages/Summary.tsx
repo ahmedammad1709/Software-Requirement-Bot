@@ -1,6 +1,7 @@
 import { FileText, Download, ArrowLeft, Users, AlertCircle, Clock, DollarSign } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 import { useNavigate } from "react-router-dom";
 
 const Summary = () => {
@@ -184,6 +185,7 @@ const Summary = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

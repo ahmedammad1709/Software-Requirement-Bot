@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, MessageSquare, FileText, Sparkles, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 
 const Landing = () => {
   const features = [
@@ -44,7 +45,7 @@ const Landing = () => {
             {/* Badge */}
             <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-card border border-border shadow-sm">
               <Sparkles className="w-4 h-4 text-primary" />
-              <span className="text-sm font-medium">AI-Powered Requirements Engineering</span>
+              <span className="text-sm font-medium">AI-Powered Requirement Engineering</span>
             </div>
 
             {/* Main Heading */}
@@ -53,7 +54,7 @@ const Landing = () => {
                 AI-Powered
               </span>
               <br />
-              <span className="text-foreground">Requirements Engineer</span>
+              <span className="text-foreground">Requirement Engineer</span>
             </h1>
 
             {/* Subtext */}
@@ -168,6 +169,7 @@ const Landing = () => {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 };

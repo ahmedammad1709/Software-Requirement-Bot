@@ -3,6 +3,7 @@ import { Send, Bot, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 import { useNavigate } from "react-router-dom";
 
 const Chat = () => {
@@ -194,6 +195,7 @@ const Chat = () => {
           </div>
         </main>
       </div>
+      <Footer />
     </div>
   );
 };
