@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Send, Bot, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { generateGeminiResponse } from "@/lib/ai";
+import { toast } from "@/components/ui/sonner";
 import { useNavigate } from "react-router-dom";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 const Chat = () => {
   const navigate = useNavigate();
@@ -16,14 +19,20 @@ const Chat = () => {
   ]);
   const [inputValue, setInputValue] = useState("");
   const [isTyping, setIsTyping] = useState(false);
+  const [isInfoOpen, setIsInfoOpen] = useState(true);
+  const [projectNameInput, setProjectNameInput] = useState("");
+  const [clientNameInput, setClientNameInput] = useState("");
+  const [projectInfo, setProjectInfo] = useState({
+    name: "",
+    client: "",
+    status: "In Progress",
+  });
 
-  const projectInfo = {
-    name: "E-Commerce Platform",
-    client: "TechCorp Inc.",
-    status: "In Progress"
-  };
+  useEffect(() => {
+    setIsInfoOpen(true);
+  }, []);
 
-  const handleSend = () => {
+  const handleSend = async () => {
     if (!inputValue.trim()) return;
 
     // Add user message
@@ -32,19 +41,24 @@ const Chat = () => {
     setInputValue("");
     setIsTyping(true);
 
-    // Simulate bot response
-    setTimeout(() => {
-      const botResponses = [
-        "Great! Now, who are the primary stakeholders for this project?",
-        "Can you describe the main features you need for this system?",
-        "What are your non-functional requirements like performance, security, and scalability?",
-        "Excellent! Let me gather a few more details about user roles and permissions."
-      ];
-      
-      const randomResponse = botResponses[Math.floor(Math.random() * botResponses.length)];
-      setMessages([...newMessages, { role: "bot", content: randomResponse }]);
+    try {
+      const reply = await generateGeminiResponse(inputValue);
+      setMessages([...newMessages, { role: "bot", content: reply }]);
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : String(err);
+      toast.error("Failed to get AI response", {
+        description: message || "Unknown error",
+      });
+      setMessages([...newMessages, { role: "bot", content: "Sorry, I couldn't fetch a response right now." }]);
+    } finally {
       setIsTyping(false);
-    }, 1500);
+    }
+  };
+
+  const handleSaveInfo = () => {
+    if (!projectNameInput.trim() || !clientNameInput.trim()) return;
+    setProjectInfo({ name: projectNameInput.trim(), client: clientNameInput.trim(), status: "In Progress" });
+    setIsInfoOpen(false);
   };
 
   const handleKeyPress = (e) => {
@@ -57,6 +71,27 @@ const Chat = () => {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <Navbar />
+      <Dialog open={isInfoOpen} onOpenChange={setIsInfoOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Set Project Context</DialogTitle>
+            <DialogDescription>Enter details to personalize your requirement session.</DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <label className="text-sm font-medium">Project Name</label>
+              <Input value={projectNameInput} onChange={(e) => setProjectNameInput(e.target.value)} placeholder="e.g., E-Commerce Platform" />
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-medium">Your Name</label>
+              <Input value={clientNameInput} onChange={(e) => setClientNameInput(e.target.value)} placeholder="e.g., Ammad Ahmed" />
+            </div>
+          </div>
+          <DialogFooter>
+            <Button onClick={handleSaveInfo} disabled={!projectNameInput.trim() || !clientNameInput.trim()} className="bg-gradient-primary text-white shadow-glow">Continue</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
       
       <div className="flex-1 flex pt-16">
         {/* Project Info Panel */}
@@ -74,14 +109,14 @@ const Chat = () => {
                 <label className="text-xs text-muted-foreground font-medium uppercase tracking-wide">
                   Project Name
                 </label>
-                <p className="text-sm font-semibold mt-1">{projectInfo.name}</p>
+                <p className="text-sm font-semibold mt-1">{projectInfo.name || "Not set"}</p>
               </div>
 
               <div className="p-4 rounded-lg bg-gradient-card border border-border">
                 <label className="text-xs text-muted-foreground font-medium uppercase tracking-wide">
                   Client Name
                 </label>
-                <p className="text-sm font-semibold mt-1">{projectInfo.client}</p>
+                <p className="text-sm font-semibold mt-1">{projectInfo.client || "Not set"}</p>
               </div>
 
               <div className="p-4 rounded-lg bg-gradient-card border border-border">

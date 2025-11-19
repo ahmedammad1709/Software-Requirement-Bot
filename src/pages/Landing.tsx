@@ -87,10 +87,11 @@ const Landing = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
+      <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-secondary/10" />
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold mb-2">
               Why Choose ReqBot?
             </h2>
             <p className="text-lg text-muted-foreground">
@@ -102,9 +103,10 @@ const Landing = () => {
             {features.map((feature, index) => (
               <div
                 key={index}
-                className="group p-8 rounded-2xl bg-card border border-border shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+                className="group p-8 rounded-2xl bg-card border border-border shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 opacity-0"
+                style={{ animation: "fade-up 600ms ease-out forwards", animationDelay: `${index * 120}ms` }}
               >
-                <div className="w-14 h-14 rounded-xl bg-gradient-primary flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-glow">
+                <div className="w-14 h-14 rounded-xl bg-gradient-primary flex items-center justify-center mb-6 shadow-glow animate-[float_3s_ease-in-out_infinite]">
                   <feature.icon className="w-7 h-7 text-white" />
                 </div>
                 <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
@@ -118,10 +120,11 @@ const Landing = () => {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
+      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-muted/30 overflow-hidden">
+        <div className="absolute -top-32 -right-24 w-72 h-72 rounded-full bg-gradient-primary opacity-20 blur-3xl -z-10" />
         <div className="container mx-auto max-w-4xl">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold mb-2">
               Transform Your Workflow
             </h2>
             <p className="text-lg text-muted-foreground">
@@ -133,7 +136,8 @@ const Landing = () => {
             {benefits.map((benefit, index) => (
               <div
                 key={index}
-                className="flex items-start space-x-4 p-6 rounded-xl bg-card border border-border shadow-sm"
+                className="flex items-start space-x-4 p-6 rounded-xl bg-card border border-border shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 opacity-0"
+                style={{ animation: "fade-up 600ms ease-out forwards", animationDelay: `${index * 120 + 200}ms` }}
               >
                 <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center">
                   <Check className="w-4 h-4 text-primary" />
