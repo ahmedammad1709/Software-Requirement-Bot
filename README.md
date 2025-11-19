@@ -1,73 +1,57 @@
-# Welcome to your Lovable project
+# ReqBot UI Kit
 
-## Project info
+A React + TypeScript UI kit for building a modern, responsive interface around a requirements‑focused chatbot and related views. It includes a curated set of reusable UI components, page templates, and routing set up to help you ship quickly.
 
-**URL**: https://lovable.dev/projects/53b3098b-dfd5-456f-a526-0cdb5ed01cb7
+## Overview
 
-## How can I edit this code?
+This project provides:
 
-There are several ways of editing your application.
+- Reusable UI components in `src/components/ui` based on Radix primitives and Tailwind.
+- A responsive application layout with `Navbar` in `src/components/layout/Navbar.tsx`.
+- Ready‑made pages: `Landing`, `Chat`, `Summary`, `Index`, and `NotFound` under `src/pages`.
+- Client‑side routing via `react-router-dom` and a Vite dev workflow.
 
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/53b3098b-dfd5-456f-a526-0cdb5ed01cb7) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
+## Tech Stack
 
 - Vite
+- React 18
 - TypeScript
-- React
-- shadcn-ui
 - Tailwind CSS
+- Radix UI / shadcn‑style components
+- TanStack Query (for client data fetching/caching)
 
-## How can I deploy this project?
+## Getting Started
 
-Simply open [Lovable](https://lovable.dev/projects/53b3098b-dfd5-456f-a526-0cdb5ed01cb7) and click on Share -> Publish.
+Prerequisites: Node.js and npm installed.
 
-## Can I connect a custom domain to my Lovable project?
+```sh
+# Install dependencies
+npm i
 
-Yes, you can!
+# Start the development server
+npm run dev
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+# Lint the project
+npm run lint
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+# Build for production
+npm run build
+
+# Preview the production build locally
+npm run preview
+```
+
+## Project Structure
+
+- `src/pages` – application views like `Landing.tsx`, `Chat.tsx`, `Summary.tsx`.
+- `src/components/ui` – composable UI components (buttons, dialogs, tables, etc.).
+- `src/components/layout` – layout elements such as the `Navbar`.
+- `src/hooks` – reusable React hooks.
+- `src/lib` – utilities and helpers.
+- `public` – static assets.
+
+## Customization
+
+- Tailwind configuration in `tailwind.config.ts`.
+- Global styles in `src/index.css` and `src/App.css`.
+- Vite configuration in `vite.config.ts`.
