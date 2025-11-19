@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { useTheme } from "next-themes";
 import { Sun, Moon } from "lucide-react";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 
 const Navbar = () => {
   const location = useLocation();
@@ -69,22 +70,35 @@ const Navbar = () => {
             </button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button className="md:hidden p-2 rounded-lg hover:bg-muted transition-colors">
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-          </button>
+          <Sheet>
+            <SheetTrigger asChild>
+              <button className="md:hidden p-2 rounded-lg hover:bg-muted transition-colors">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              </button>
+            </SheetTrigger>
+            <SheetContent side="right">
+              <SheetHeader>
+                <SheetTitle className="flex items-center gap-2">
+                  <img src="/logo.png" alt="Logo" className="h-6 w-6" />
+                  Software Requirement Bot
+                </SheetTitle>
+              </SheetHeader>
+              <div className="mt-6 space-y-4">
+                <Link to="/" className="block text-sm font-medium text-foreground">Home</Link>
+                <Link to="/chat" className="block text-sm font-medium text-foreground">Chat</Link>
+                <Link to="/summary" className="block text-sm font-medium text-foreground">Summary</Link>
+                <button
+                  aria-label="Toggle theme"
+                  onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+                  className="mt-2 p-2 rounded-lg bg-muted w-full text-sm"
+                >
+                  {resolvedTheme === "dark" ? "Switch to Light" : "Switch to Dark"}
+                </button>
+              </div>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
     </nav>

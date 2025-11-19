@@ -144,8 +144,8 @@ const Chat = () => {
           {/* Chat Header */}
           <div className="border-b border-border bg-card/50 px-6 py-4">
             <h1 className="text-xl font-semibold flex items-center">
-              <Bot className="w-6 h-6 mr-2 text-primary" />
-              ReqBot — Requirement Gathering Assistant
+              <img src="/logo.png" alt="Logo" className="h-6 w-6 mr-2" />
+              Software Requiremnet Bot 
             </h1>
           </div>
 
@@ -170,7 +170,7 @@ const Chat = () => {
                     }`}
                   >
                     {message.role === "bot" ? (
-                      <Bot className="w-5 h-5 text-white" />
+                      <img src="/logo.png" alt="Logo" className="h-5 w-5" />
                     ) : (
                       <User className="w-5 h-5 text-foreground" />
                     )}
@@ -195,7 +195,7 @@ const Chat = () => {
               <div className="flex justify-start">
                 <div className="flex items-start space-x-3">
                   <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-primary shadow-glow flex items-center justify-center">
-                    <Bot className="w-5 h-5 text-white" />
+                    <img src="/logo.png" alt="Logo" className="h-5 w-5" />
                   </div>
                   <div className="px-6 py-4 rounded-2xl bg-card border border-border">
                     <div className="flex space-x-2">
